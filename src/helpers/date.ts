@@ -1,7 +1,7 @@
 import { DateData, Month } from '../types/data';
 
 function getMonthName(monthNumber: number) {
-  const date = new Date(2000, monthNumber - 1, 1);
+  const date = new Date(2000, monthNumber, 1);
   const monthName = date.toLocaleString('ru-RU', { month: 'short' });
   return monthName;
 }
