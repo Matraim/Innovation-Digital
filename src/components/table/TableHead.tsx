@@ -2,7 +2,7 @@ import { TableRow, TableHead as MuiTableHead, TableCell } from '@mui/material';
 import { FC } from 'react';
 
 interface ITableHead {
-  daysOfMonth: string[];
+  daysOfMonth: { month: string; length: number }[];
 }
 
 const TableHead: FC<ITableHead> = ({ daysOfMonth }) => {
@@ -18,15 +18,15 @@ const TableHead: FC<ITableHead> = ({ daysOfMonth }) => {
             width: '20px',
           }}
         />
-        {daysOfMonth.map((day) => (
+        {daysOfMonth.map((day, i) => (
           <TableCell
             align="center"
             sx={{ fontSize: '10px', p: 0, lineHeight: 1, letterSpacing: 0 }}
             padding="none"
-            colSpan={4}
-            key={day}
+            colSpan={day.length}
+            key={i}
           >
-            {day}
+            {day.month}
           </TableCell>
         ))}
       </TableRow>

@@ -1,5 +1,11 @@
 import { DateData, Month } from '../types/data';
 
+function getMonthName(monthNumber: number) {
+  const date = new Date(2000, monthNumber - 1, 1);
+  const monthName = date.toLocaleString('ru-RU', { month: 'short' });
+  return monthName;
+}
+
 export const createCalendarGrid = (date: DateData): Month[][] => {
   const arrayWeek = [[], [], [], [], [], [], []];
 
@@ -60,9 +66,9 @@ export function fillMissingDates(dataArray: DateData) {
   return filledData;
 }
 
-export const getDataMonths = (calendarGrid: Month[][]): string[] => {
-  const monthsSet = new Set<string>();
-
+export const getDataMonths = (
+  calendarGrid: Month[][]
+): { month: string; length: number }[] => {
   const monthsNestedArray: number[][] = [];
 
   calendarGrid.forEach((week) => {
@@ -79,38 +85,34 @@ export const getDataMonths = (calendarGrid: Month[][]): string[] => {
 
   const numbers = monthsNestedArray[0];
 
-  const monthsArray: number[][] = [];
+  const monthsArray: { value: number; index: number }[][] = [];
 
   for (let i = 0; i < numbers.length; i++) {
     const monthNumber = numbers[i];
     const existingArrayIndex = monthsArray.findIndex((arr) =>
-      arr.includes(monthNumber)
+      arr.some((item) => item.value === monthNumber && item.index + 1 === i)
     );
 
     if (existingArrayIndex !== -1) {
-      monthsArray[existingArrayIndex].push(monthNumber);
+      if (monthsArray[existingArrayIndex].some((a) => a.index + 1 === i)) {
+        monthsArray[existingArrayIndex].push({
+          value: monthNumber,
+          index: i,
+        });
+      }
     } else {
-      monthsArray.push([monthNumber]);
+      monthsArray.push([{ value: monthNumber, index: i }]);
     }
   }
 
-  console.log(monthsArray);
+  const monthsArrayString = monthsArray.map((el) => ({
+    month: getMonthName(el[0].value),
+    length: el.length,
+  }));
 
-  calendarGrid.forEach((week) => {
-    week.forEach((day) => {
-      const month = new Date(day.date).toLocaleString('ru-RU', {
-        month: 'short',
-      });
+  console.log(monthsArrayString);
 
-      if (!monthsSet.has(month) && monthsSet.size < 12) {
-        monthsSet.add(month);
-      }
-    });
-  });
-
-  const months = Array.from(monthsSet);
-
-  return months;
+  return monthsArrayString;
 };
 
 export const chartBackground = (value: number) => {
