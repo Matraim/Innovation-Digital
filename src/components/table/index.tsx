@@ -11,7 +11,7 @@ const DataTable = memo(() => {
   const { data } = useAppSelector((state) => selectorData(state));
 
   if (!Object.keys(data).length) {
-    return <h1>Items None</h1>;
+    return <h1>No Items</h1>;
   }
 
   const array = createCalendarGrid(data);

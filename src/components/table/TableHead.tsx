@@ -15,7 +15,7 @@ const TableHead: FC<ITableHead> = ({ daysOfMonth }) => {
             p: 0,
             lineHeight: 0.8,
             letterSpacing: 0,
-            width: '20px',
+            width: '35px',
           }}
         />
         {daysOfMonth.map((day, i) => (
