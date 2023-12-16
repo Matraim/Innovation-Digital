@@ -14,7 +14,7 @@ const StyledNavbar = styled.nav`
 const Navbar: React.FC = () => {
   return (
     <StyledNavbar>
-      <NavLink to="/">Home</NavLink>
+      <NavLink to="/home">Home</NavLink>
       <NavLink to="/about">About</NavLink>
       <NavLink to="/contact">Contact</NavLink>
     </StyledNavbar>
