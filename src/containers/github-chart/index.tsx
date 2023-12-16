@@ -1,8 +1,8 @@
-import { Box, Container, styled } from "@mui/material";
-import { useAppDispatch } from "../../hooks/redux";
-import { useEffect } from "react";
-import { getDataThunk } from "../../store/slices/data";
-import Table from "../../components/table";
+import { Box, Container, styled } from '@mui/material';
+import { useAppDispatch } from '../../hooks/redux';
+import { useEffect } from 'react';
+import { getDataThunk } from '../../store/slices/data';
+import Table from '../../components/table';
 
 const RootStyle = styled(Box)(() => ({}));
 

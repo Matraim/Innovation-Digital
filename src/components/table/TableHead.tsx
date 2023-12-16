@@ -7,7 +7,7 @@ interface ITableHead {
 
 const TableHead: FC<ITableHead> = ({ daysOfMonth }) => {
   return (
-    <MuiTableHead sx={{ border: 'none' }}>
+    <MuiTableHead sx={{ border: 'none' }} style={{ borderColor: 'black' }}>
       <TableRow sx={{ p: 0, border: 'none' }}>
         <TableCell
           sx={{

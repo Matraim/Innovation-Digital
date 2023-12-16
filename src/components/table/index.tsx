@@ -11,7 +11,7 @@ const DataTable = memo(() => {
   const { data } = useAppSelector((state) => selectorData(state));
 
   if (!Object.keys(data).length) {
-    return <h1>No Items</h1>;
+    return <h3>No Items</h3>;
   }
 
   const array = createCalendarGrid(data);
@@ -20,7 +20,7 @@ const DataTable = memo(() => {
 
   return (
     <TableContainer
-      sx={{ pt: 3, px: 1, pb: 1, border: '1px solid' }}
+      sx={{ pt: 3, px: 1, pb: 1, border: '1px solid black', cursor: 'pointer' }}
       component={Paper}
     >
       <Table
